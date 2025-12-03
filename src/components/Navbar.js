@@ -1,0 +1,40 @@
+import React,{ Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
+import styles from './Navbar.module.css';
+import { useNavigate } from 'react-router-dom';
+/* import homeIcon from '../assets/icons/home.png';
+ */const Navbar = () =>{
+/*       const { user } = useAuthContext();
+ */
+    
+    const navigate = useNavigate();
+/*     const {logout} = useLogout();
+ */    
+     
+    return(
+        <header>
+            <div className={styles.navContainer}>
+                <NavLink to="/" className={styles.chowRate}>
+                    <div>Seekr</div>
+                    
+                </NavLink>
+
+                <nav className={styles.mainNav}>
+                 {/*  <NavLink className={({isActive}) =>(isActive ? styles.activeLink: styles.white)} to ="/"><img alt ="icon"/></NavLink>
+                  <NavLink className={({isActive})=>(isActive ? styles.activeLink : styles.white)} to ="/studentDashBoard">StudentDash</NavLink>
+                  <NavLink className={({isActive})=>(isActive ? styles.activeLink: styles.white)} to = "/contact">Contact Us</NavLink>
+
+ */}
+                  
+
+                </nav>
+               
+               
+{/*                 {user ? <button className={styles.logout}onClick={handleLogout}>logout</button>:<Fragment><NavLink to="/register" className={styles.white1}>Signup</NavLink><NavLink to="/login" className={styles.white1}>login</NavLink></Fragment>}
+ */}                
+                
+            </div>
+        </header>
+    )
+}
+export default Navbar;
