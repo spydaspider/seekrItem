@@ -1,7 +1,7 @@
 .navContainer{
     position: fixed;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 0.5em;
 
@@ -36,11 +36,28 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    justify-content: space-around;
     text-decoration: none;
+
+    
+    width: 35%;
+    
   }
+  .amandaH3{
+    text-align: left;
+  }
+  
+  .amandaSmall{
+
+    font-size: 15px;
+    font-weight: 500;
+    color: #b1b1b1;
+  }
+  
   .chowRate div{
    color: #000000;
    font-size: 20px;
+
    
   }
   .chowRate img{
@@ -48,19 +65,50 @@
   
     
   }
-  .restaurantList button{
-    background: none;
+  .rightLinks{
+    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+
+  }
+  .rightLinks input{
+    
+    width: 50%;
+    height: 40px;
+    font-size: 12px;
+    padding-left: 8px;
     border:none;
-    color: white;
-    cursor:pointer;
+    border-radius: 17px;
+    outline: none;
+     background-image: url('/public/assets/images/searchIcon.png'); 
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  padding-left: 35px; 
+  background-size: 16px 16px;
+
+  
     
   }
-  .logout{
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: white;
+  .rightLinks button{
+    border-radius: 17px;
+    border:none;
+    background: #23262D;
+    color: #FFFFFF;
+    width: 20%
+
   }
+  .seekIcon{
+    width: 60px;
+    margin-top: 5px;
+  }
+  .seekIcon img{
+    width: 100%;
+  }
+  
+  
+
   @media(max-width: 768px)
   {
     .navContainer{

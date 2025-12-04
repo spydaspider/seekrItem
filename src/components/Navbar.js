@@ -15,7 +15,12 @@ import { useNavigate } from 'react-router-dom';
         <header>
             <div className={styles.navContainer}>
                 <NavLink to="/" className={styles.chowRate}>
-                    <div>Seekr</div>
+                    <div className ={styles.seekIcon}><img src = "assets/images/seekicon.png"/></div>
+                    <div className={styles.amanda}>
+                        <h3 className={styles.amandaH3}>Hi,Amanda!<br></br><span className={styles.amandaSmall}>Lets take a look at Seekr's activities today</span></h3>
+                
+                    </div>
+                    
                     
                 </NavLink>
 
@@ -24,7 +29,11 @@ import { useNavigate } from 'react-router-dom';
                   <NavLink className={({isActive})=>(isActive ? styles.activeLink : styles.white)} to ="/studentDashBoard">StudentDash</NavLink>
                   <NavLink className={({isActive})=>(isActive ? styles.activeLink: styles.white)} to = "/contact">Contact Us</NavLink>
 
- */}
+ */}             
+                <div className={styles.rightLinks}>
+                   <input type="search" placeholder = "Search for all lost or found items"/> 
+                   <button>log out</button>
+                </div>
                   
 
                 </nav>
