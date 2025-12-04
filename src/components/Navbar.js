@@ -2,6 +2,7 @@ import React,{ Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
+import seekIcon from '../images/seekIcon.png';
 /* import homeIcon from '../assets/icons/home.png';
  */const Navbar = () =>{
 /*       const { user } = useAuthContext();
@@ -15,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
         <header>
             <div className={styles.navContainer}>
                 <NavLink to="/" className={styles.chowRate}>
-                    <div className ={styles.seekIcon}><img src = "assets/images/seekicon.png"/></div>
+                    <div className ={styles.seekIcon}><img src = {seekIcon}/></div>
                     <div className={styles.amanda}>
                         <h3 className={styles.amandaH3}>Hi,Amanda!<br></br><span className={styles.amandaSmall}>Lets take a look at Seekr's activities today</span></h3>
                 

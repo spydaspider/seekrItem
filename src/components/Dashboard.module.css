@@ -1,0 +1,5 @@
+.dashboardContainer{
+    background: red;
+    height: 100vh;
+    grid-column: 3/-1;
+}

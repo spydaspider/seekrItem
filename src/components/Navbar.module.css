@@ -12,6 +12,7 @@
     bottom: 0;
     max-height: 8vh;
     max-width: 100%;
+    margin-left: 2.2em;
   
   }
   .activeLink{
@@ -51,7 +52,7 @@
 
     font-size: 15px;
     font-weight: 500;
-    color: #b1b1b1;
+    color: #bbbbbb;
   }
   
   .chowRate div{
@@ -82,7 +83,7 @@
     border:none;
     border-radius: 17px;
     outline: none;
-     background-image: url('/public/assets/images/searchIcon.png'); 
+     background-image: url('/src/images/searchIcon.png'); 
   background-repeat: no-repeat;
   background-position: 10px center;
   padding-left: 35px; 

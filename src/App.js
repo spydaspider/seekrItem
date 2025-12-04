@@ -1,13 +1,16 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import './App.css';
+import AdminDashboard from './components/AdminDashboard';
 
 function App() {
   return (
     <div className="App">
      <BrowserRouter>
-      <Navbar/>
-      <Routes>
+{/*       <Navbar/>
+ */}      <Routes>
+     <Route path="/AdminDashboard" element = {<AdminDashboard/>}/>
+
 {/*                <Route exact path="/" element = {<Spinner/>}/>
  */}
        {/*   <Route exact path="/" element={<Login/>}/>

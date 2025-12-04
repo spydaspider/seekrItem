@@ -1,0 +1,144 @@
+/* ------------------- GENERAL ------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* ------------------- MIDDLE GRID ------------------- */
+.middle {
+  display: grid;
+  grid-template-columns: 200px 1fr; /* Sidebar + main content */
+  height: 100vh;
+  width: 100%;
+}
+
+/* ------------------- LEFT SIDEBAR ------------------- */
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em 0;
+  gap: 2em;
+  background: #F5F2ED;
+  overflow-y: auto;
+}
+.insideGroup1{
+    background: green;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    border-radius: 30px;
+    background: #fff;
+}
+
+/* Logo / top icon */
+.iconContainer {
+  margin-bottom: 2em;
+}
+
+.seekIcon {
+  width: 50px;
+}
+
+.seekIcon img {
+  width: 100%;
+  height: auto;
+}
+
+/* ------------------- BADGE GROUPS ------------------- */
+.group, .logoutGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+}
+
+/* Push logout group to the bottom */
+.logoutGroup {
+  margin-top: auto;
+}
+
+/* ------------------- BADGES ------------------- */
+.badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;      /* makes it circular */
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.badge img {
+  width: 40%;              /* icon size inside circle */
+  height: auto;
+}
+
+.badge:hover {
+  background: #EFEFF4;
+}
+
+.selected {
+  background: linear-gradient(to right, #1E3C72, #2A5298);
+}
+
+/* ------------------- MAIN CONTENT ------------------- */
+.right {
+  padding: 2em;
+  overflow-y: auto;
+  height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* ------------------- SEARCH INPUT ------------------- */
+.rightLinks {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.rightLinks input {
+  width: 50%;
+  height: 40px;
+  padding-left: 35px;           /* space for search icon */
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  font-size: 12px;
+  background-image: url('/src/images/searchIcon.png');
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 16px 16px;
+}
+
+.rightLinks button {
+  border: none;
+  border-radius: 20px;
+  background-color: #23262D;
+  color: #fff;
+  width: 20%;
+  cursor: pointer;
+}
+
+/* ------------------- OPTIONAL: NAV STYLING ------------------- */
+.navContainer {
+  position: fixed;
+  top: 0;
+  left: 200px;  /* offset by sidebar width */
+  right: 0;
+  height: 60px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+  z-index: 5;
+  border-bottom: 1px solid #e0e0e0;
+}
