@@ -8,13 +8,16 @@
 
 /* ------------------- MIDDLE GRID ------------------- */
 .middle {
-  display: grid;
-  grid-template-columns: 200px 1fr; /* Sidebar + main content */
+  grid-column: 2/-1;
   height: 100vh;
   width: 100%;
+  
+  overflow: auto;
+  position: relative;
+
+  
 }
 
-/* ------------------- LEFT SIDEBAR ------------------- */
 .left {
   display: flex;
   flex-direction: column;
@@ -23,6 +26,8 @@
   gap: 2em;
   background: #F5F2ED;
   overflow-y: auto;
+
+  grid-column: 1/2;
 }
 .insideGroup1{
     background: green;
@@ -127,18 +132,8 @@
   cursor: pointer;
 }
 
-/* ------------------- OPTIONAL: NAV STYLING ------------------- */
-.navContainer {
-  position: fixed;
-  top: 0;
-  left: 200px;  /* offset by sidebar width */
-  right: 0;
-  height: 60px;
-  background: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1em;
-  z-index: 5;
-  border-bottom: 1px solid #e0e0e0;
+.container{
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+
 }

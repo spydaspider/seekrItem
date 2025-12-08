@@ -12,6 +12,7 @@ import logout from '../images/logout.png';
 
 import Dashboard from './Dashboard';
 import seekIcon from '../images/seekIcon.png';
+import Navbar from './Navbar';
 
 const AdminDashboard = () => {
 
@@ -47,9 +48,8 @@ const AdminDashboard = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.middle}>
-
-        <div className={styles.left}>
+            <Navbar/>
+            <div className={styles.left}>
           
       
           <div className={styles.iconContainer}>
@@ -104,10 +104,14 @@ const AdminDashboard = () => {
           </div>
           </div>
 
+      <div className={styles.middle}>
+  
+                {showDashboard && <Dashboard />}
+
+
         </div>
 
         
-        {showDashboard && <Dashboard />}
 
       </div>
     

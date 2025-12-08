@@ -1,18 +1,18 @@
 .navContainer{
-    position: fixed;
+    position: absolute;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5em;
-
+    
     z-index:3;
     top:0;
-    left:0;
+    left:10%;;
     right:0;
     bottom: 0;
-    max-height: 8vh;
+    max-height: 12vh;
     max-width: 100%;
-    margin-left: 2.2em;
+  
+  
   
   }
   .activeLink{
@@ -43,6 +43,10 @@
     
     width: 35%;
     
+  }
+  .amanda{
+    
+    margin-left: -30%;
   }
   .amandaH3{
     text-align: left;

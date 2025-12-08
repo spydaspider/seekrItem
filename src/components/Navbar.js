@@ -16,7 +16,6 @@ import seekIcon from '../images/seekIcon.png';
         <header>
             <div className={styles.navContainer}>
                 <NavLink to="/" className={styles.chowRate}>
-                    <div className ={styles.seekIcon}><img src = {seekIcon}/></div>
                     <div className={styles.amanda}>
                         <h3 className={styles.amandaH3}>Hi,Amanda!<br></br><span className={styles.amandaSmall}>Lets take a look at Seekr's activities today</span></h3>
                 

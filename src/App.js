@@ -7,8 +7,8 @@ function App() {
   return (
     <div className="App">
      <BrowserRouter>
-{/*       <Navbar/>
- */}      <Routes>
+    
+       <Routes>
      <Route path="/AdminDashboard" element = {<AdminDashboard/>}/>
 
 {/*                <Route exact path="/" element = {<Spinner/>}/>
