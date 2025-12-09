@@ -13,6 +13,7 @@ import logout from '../images/logout.png';
 import Dashboard from './Dashboard';
 import seekIcon from '../images/seekIcon.png';
 import Navbar from './Navbar';
+import LostAndFoundBoard from './LostAndFoundBoard';
 
 const AdminDashboard = () => {
 
@@ -37,12 +38,20 @@ const AdminDashboard = () => {
 
   const [selectedBadge, setSelectedBadge] = useState("Dashboard");
   const [showDashboard, setShowDashboard] = useState(true);
+  const [showLostAndFoundBoard, setShowLostAndFoundBoard] = useState(false);
 
   const handleBadgeClick = (badge) => {
     setSelectedBadge(badge);
 
     if (badge === "Dashboard") {
       setShowDashboard(true);
+      setShowLostAndFoundBoard(false);
+
+    }
+    else if(badge === "second")
+    {
+      setShowLostAndFoundBoard(true);
+      setShowDashboard(false);
     }
   };
 
@@ -107,6 +116,7 @@ const AdminDashboard = () => {
       <div className={styles.middle}>
   
                 {showDashboard && <Dashboard />}
+                {showLostAndFoundBoard && <LostAndFoundBoard/>}
 
 
         </div>

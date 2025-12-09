@@ -1,0 +1,151 @@
+.lostAndFoundBoardContainer{
+     position: absolute;
+    top:13%;
+    left: 1px;
+    right: 1px;
+    bottom:1px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    
+
+}
+.search{
+    width: 100%;
+    height: 40px;
+    font-size: 12px;
+    
+    border:none;
+    border-radius: 17px;
+    outline: none;
+     background-image: url('/src/images/searchIcon.png'); 
+  background-repeat: no-repeat;
+  background-position: 20px center;
+  padding-left: 45px; 
+  background-size: 16px 16px;
+
+}
+.categoryButtons{
+    display: flex;
+    justify-content: flex-start;
+    gap: 1em;
+    
+}
+.categoryButtons button{
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    font-size:12px;
+    padding-top: 0.4em;
+    padding-bottom:0.4em;
+    border-radius: 18px;
+    border: none;
+
+}
+.gridCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  overflow-y: auto;
+}
+
+/* --- Card --- */
+.card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 
+    0px 4px 10px rgba(0,0,0,0.08),
+    0px 0px 0px 1px rgba(0,0,0,0.03);
+}
+
+/* --- View Details Row --- */
+.viewDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viewDetailsButton {
+  padding: 6px 16px;
+  border: none;
+  background: #2d2d2d;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.rightButtons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.active {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid #2d2d2d;
+  background: transparent;
+  color: #2d2d2d;
+  cursor: default;
+  font-size: 12px;
+}
+
+/* --- Note Section (title + description) --- */
+.note {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2a2a2a;
+  margin: 0;
+  text-align: left;
+}
+
+.cardDescription {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.4;
+  margin: 0;
+  text-align: left;
+}
+
+/* --- Small Info (icons + text) --- */
+.smallEntities {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.location,
+.date,
+.person {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.smallLocation {
+  font-size: 9px;
+  color: #444;
+}
+
+/* --- Image at Bottom --- */
+.cardImage {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.cardImage img {
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  object-fit: cover;
+}

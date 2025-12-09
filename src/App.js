@@ -1,7 +1,8 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Navbar from './components/Navbar';
+
 import './App.css';
 import AdminDashboard from './components/AdminDashboard';
+import Login from './components/Login.js';
 
 function App() {
   return (
@@ -9,8 +10,9 @@ function App() {
      <BrowserRouter>
     
        <Routes>
-     <Route path="/AdminDashboard" element = {<AdminDashboard/>}/>
-
+        <Route exact path="/" element = {<Login/>}/>
+      <Route path="/AdminDashboard" element = {<AdminDashboard/>}/>
+ 
 {/*                <Route exact path="/" element = {<Spinner/>}/>
  */}
        {/*   <Route exact path="/" element={<Login/>}/>

@@ -310,7 +310,7 @@
 }
 
 /* Make it responsive */
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .overview {
     flex-direction: column;
     gap: 40px;
@@ -324,4 +324,4 @@
   .rightFlex {
     height: 300px;
   }
-}
+} */

@@ -1,0 +1,106 @@
+.background{
+    background: #EAEAEA;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   width: 100%;
+    
+}
+
+ 
+ .container {
+   display: flex;
+   flex-direction: column;
+   max-width: 900px;
+   width: 100%;
+   background: #ffffff;
+   border: 1px solid #e4e4e4;
+   border-radius: 15px;
+   overflow: hidden;
+   padding: 10px;
+   
+
+ }
+ .innerLayer{
+        background: #EAEAEA;
+        border-radius: 15px;
+        display: flex;
+         gap: 1em;
+        padding: 10px;
+        
+
+ }
+ 
+ .innerLeft{
+        display: flex;
+        flex-direction: column;
+       border-radius: 15px;
+       border: 2px solid #d3d3d3;
+       padding: 1.1em;
+       padding-bottom: 4em;
+       gap: 2.5em;
+       align-items: center;
+       flex:1;
+       
+       
+    
+
+
+
+ }
+ .innerRight{
+    background: linear-gradient(to right, #010101, #232323);
+    flex:1;
+    border-radius: 15px;
+    color: #FFFFFF;
+    text-align: left;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+ }
+ .innerRight h2{
+    color: #FFFFFFC9;
+ }
+ .innerRight p{
+    font-size: 15px;
+    color: #FFFFFF9E;
+ }
+ .imageContainer{
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    
+
+ }
+ .icon{
+    width: 100%;
+ }
+ 
+ .loginDesc h4{
+    font-size: 22px;
+ }
+ .loginDesc p{
+    font-size: 16px;
+ }
+ input{
+    width: 100%;
+    padding: 1em;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+ }
+ button{
+    width: 100%;
+    padding: 1em;
+ border-radius: 12px;
+ border: none;
+ background: #000000;
+ color: #FFFFFF;
+ cursor: pointer;
+
+ }
+ 
+ 
