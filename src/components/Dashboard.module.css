@@ -4,6 +4,9 @@
     left: 1px;
     right: 1px;
     bottom:1px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
     
 }
 .topBoard{
@@ -13,11 +16,7 @@
    gap: 2em;
    
    }
-.buttonCards{
-   background: blue;
-   height: 320px;
 
-}
 .pendingClaims{
     height: 320px;
     background: #23262D;
@@ -25,12 +24,304 @@
     flex:1;
     border-radius: 30px;
     margin-right: 2em;
-    
+    padding-top: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
+     display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+    overflow-y: auto;
+    padding-bottom: 2em;
 
+}
+.pendingClaims h4{
+    color: #FFFFFF;
+    text-align: left;
+   
+}
+.pendingCard{
+     border-radius: 14px;
+    display: flex;
+    background: #F5F2ED;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.pendingClaims button{
+    background: #23262D;
+    padding: 0.5em 2em;
+    margin-right: 15px;
+    border-radius: 7px;
+    color: #FFFFFF;
+    font-size: 13px;
 }
 .overview{
     width: 100%;
     background:#CFC6B5;
     border-radius: 30px;
     flex:2;
+}
+.buttonCards{
+   
+   height: 320px;
+   display: flex;
+   gap: 1.5em;
+   padding: 5px;
+
+
+}
+.claims{
+
+    flex:1;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.recentItems{
+    flex: 2;
+    background: green;
+    border-radius: 18px;
+    background: #FFFFFF;
+    padding: 18px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+
+}
+.recentItems h4{
+    text-align: left;
+}
+.recentCard{
+    
+    border-radius: 18px;
+    display: flex;
+    background: #F5F2ED;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.personCard{
+    
+    display:flex;
+    padding-left: 7px;
+    padding-top: 5px;
+    padding-bottom:3px;
+    gap: 4px;
+    align-items: center;
+}
+.personParagraph{
+    text-align: left;
+    font-size: 13px;
+    font-weight: bold;
+}
+.black{
+    font-weight: 400;
+    color: rgb(121, 121, 121);
+}
+.itemStatus{
+    font-size: 14px;
+}
+.arrowRight{
+   width: 25px;
+   margin-right: 2px;
+
+}
+.arrowRight img{
+    width: 100%;
+    
+}
+.activeClaimsCard{
+   display:flex;
+   background: #FFFFFF;
+   padding: 0.5em;
+   border-radius: 18px;
+   height: 140px;
+   gap: 0.4em;
+   
+}
+.activeClaimsContent{
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    width: 100%;
+    flex: 2;
+    padding: 6px;
+    justify-content: space-between;
+    
+
+}
+
+.activeClaimsTitle p{
+    font-weight: 300;
+    
+}
+.numberCard{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 75px;
+    background: #F3F3F3;
+    border-radius: 18px;
+    box-shadow: 
+        4px 4px 8px rgba(0, 0, 0, 0.25),    /* dark shadow: bottom-right */
+        -4px -4px 8px rgba(255, 255, 255, 0.8); /* light shadow: top-left */
+    
+    
+}
+.activeClaimsTitle{
+    
+    text-align: left;
+    line-height: 1.2;
+}
+.activeClaimsTitle p{
+   font-size: 12px;
+}
+.viewDetails{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+}
+.viewDetails p{
+    font-size: 13px;
+
+    
+}
+
+/*The overview */
+.overview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #cfc7ba;
+  padding: 40px;
+  border-radius: 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.leftFlex {
+  width: 35%;
+  height: 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.leftFlex h4 {
+  color: #3a3a3a;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 30px;
+  text-align: left;
+
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: #3d3d3d;
+}
+
+.dot {
+  width: 70px;
+  height: 15px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.claimed {
+  background: #f5d46a; /* yellow */
+}
+
+.lost {
+  background: #ef6a63; /* red */
+}
+
+.found {
+  background: #3f3f3f; /* dark */
+}
+
+.rightFlex {
+  position: relative;
+  width: 65%;
+  height: 380px;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #222;
+  font-weight: bold;
+  text-align: center;
+}
+
+.bigNumber {
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.label {
+  font-size: 16px;
+}
+
+/* === Bubble Styles === */
+.bubbleClaims {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, #fbe18c 0%, #f5d467 80%);
+  top: 50px;
+  right: 0px;
+}
+
+.bubbleLost {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, #ff8d80 0%, #e44b45 80%);
+  bottom: 60px;
+  left: 115px;
+}
+
+.bubbleFound {
+  width: 110px;
+  height: 110px;
+  background: radial-gradient(circle, #6c6c6c 0%, #2f2f2f 80%);
+  top: 60px;
+  left: 140px;
+  color: white;
+}
+
+/* Make it responsive */
+@media (max-width: 900px) {
+  .overview {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .leftFlex, .rightFlex {
+    width: 100%;
+    text-align: center;
+  }
+
+  .rightFlex {
+    height: 300px;
+  }
 }
