@@ -14,6 +14,8 @@ import Dashboard from './Dashboard';
 import seekIcon from '../images/seekIcon.png';
 import Navbar from './Navbar';
 import LostAndFoundBoard from './LostAndFoundBoard';
+import Claims from './Claims';
+
 
 const AdminDashboard = () => {
 
@@ -39,6 +41,7 @@ const AdminDashboard = () => {
   const [selectedBadge, setSelectedBadge] = useState("Dashboard");
   const [showDashboard, setShowDashboard] = useState(true);
   const [showLostAndFoundBoard, setShowLostAndFoundBoard] = useState(false);
+  const [showClaims, setShowClaims] = useState(false);
 
   const handleBadgeClick = (badge) => {
     setSelectedBadge(badge);
@@ -46,12 +49,22 @@ const AdminDashboard = () => {
     if (badge === "Dashboard") {
       setShowDashboard(true);
       setShowLostAndFoundBoard(false);
+      setShowClaims(false);
+      
 
     }
     else if(badge === "second")
     {
       setShowLostAndFoundBoard(true);
       setShowDashboard(false);
+      setShowClaims(false);
+    }
+    else if(badge === "third")
+    {
+      setShowLostAndFoundBoard(false);
+      setShowDashboard(false);
+      setShowClaims(true);
+
     }
   };
 
@@ -117,6 +130,7 @@ const AdminDashboard = () => {
   
                 {showDashboard && <Dashboard />}
                 {showLostAndFoundBoard && <LostAndFoundBoard/>}
+                {showClaims && <Claims/>}
 
 
         </div>

@@ -1,0 +1,187 @@
+.claimsContainer{
+      position: relative;
+    /* remove top: 90px; */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    overflow-y: hidden;
+    gap:1em;
+    height: 100vh; /* full viewport height */
+    padding-top: 90px; /* replace top offset with padding */
+
+    
+    
+    
+}
+.claimsSearch{
+    width: 30%;
+    border-radius: 120px;
+}
+.claimsCategoryButtons{
+    
+    display: flex;
+    gap: 1em;
+}
+.claimsCategoryButtons button{
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    font-size:12px;
+    padding-top: 0.4em;
+    padding-bottom:0.4em;
+    border-radius: 18px;
+    border: none;
+        border: 1px solid #0000003D;
+        background: #FFFFFF;
+
+}
+.claimsCardContent{
+  display: grid;
+  grid-template-columns: 1fr;  /* one column only */
+  gap: 20px;
+
+
+}
+.claimsCardContainer {
+  width: 100%;
+  display: flex;
+  
+  flex-direction: column;
+  gap: 1.5em;
+    box-sizing: border-box;
+
+  padding: 2em;
+  overflow-y: auto;
+      flex:1;
+
+  
+  
+}
+
+.claimsCard {
+  display: flex;
+  gap: 25px;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 25px;
+  width: 100%;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  align-items: flex-start;
+  
+}
+
+.claimsCard img {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.claimsCardContent {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-start;
+  
+}
+
+.leftContent {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 16px;
+}
+
+.itemName {
+  font-size: 18px;
+  font-weight: 700;
+  
+  color: #000000B3;
+}
+
+.claimer p {
+  margin: 0;
+  color: #00000099;
+  font-size: 15px;
+}
+
+.claimDesc,
+.ownershipProof {
+  font-size: 15px;
+  font-weight: 600;
+  
+    color: #000000B3;
+
+}
+
+.claimDescContainer p,
+.proofContainer p {
+  margin: 0;
+    color: #00000099;
+   font-size: 14px;
+  line-height: 1.5;
+}
+
+.date p {
+  margin-top: 10px;
+      color: #00000099;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.claimsCardContent button {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: default;
+  text-transform: lowercase;
+}
+
+/* Buttons row (view / approve / reject) */
+.downButtons {
+
+  display: flex;
+  gap: 12px;
+
+}
+
+.downButtons button {
+  padding: 8px 20px;
+  border-radius: 22px;
+      border: 1px solid #0000003D;
+     color: #000000;
+  background: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.downButtons button:hover {
+  background: #222;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .claimsCard {
+    flex-direction: column;
+  }
+
+  .claimsCard img {
+    width: 100%;
+    height: 250px;
+  }
+
+  .claimsCardContent {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .claimsCardContent button {
+    align-self: flex-start;
+  }
+}

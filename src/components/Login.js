@@ -8,7 +8,7 @@ const Login = () =>{
             
             <div className={styles.innerLeft}>
                 <div className={styles.imageContainer}>
-               <img className={styles.icon} src={seekrIcon} alt="seekIcon"/>
+               <img className={styles.iconLogin} src={seekrIcon} alt="seekIcon"/>
                </div>
                <div className={styles.loginDesc}>
                 <h4>Log in into your account</h4>
@@ -16,7 +16,7 @@ const Login = () =>{
                </div>
                <input type="text" placeholder="email@domain.com"/>
                <input type="password" placeholder="********"/>
-               <button>Log in</button>
+               <button className={styles.loginButton}>Log in</button>
             </div>
             <div className={styles.innerRight}>
                  <h2>Admin Account</h2>

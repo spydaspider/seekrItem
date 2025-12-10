@@ -6,7 +6,7 @@
     bottom:1px;
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 1em;
     
 
 }
@@ -38,7 +38,8 @@
     padding-top: 0.4em;
     padding-bottom:0.4em;
     border-radius: 18px;
-    border: none;
+    border: 1px solid #0000003D;
+    background: #FFFFFF;
 
 }
 .gridCards {

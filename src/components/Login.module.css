@@ -75,7 +75,7 @@
     
 
  }
- .icon{
+ .iconLogin{
     width: 100%;
  }
  
@@ -92,7 +92,7 @@
     outline: none;
     border-radius: 12px;
  }
- button{
+ .loginButton{
     width: 100%;
     padding: 1em;
  border-radius: 12px;

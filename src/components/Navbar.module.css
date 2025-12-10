@@ -85,7 +85,7 @@
     font-size: 12px;
     padding-left: 8px;
     border:none;
-    border-radius: 17px;
+    border-radius: 120px;
     outline: none;
      background-image: url('/src/images/searchIcon.png'); 
   background-repeat: no-repeat;
@@ -97,7 +97,7 @@
     
   }
   .rightLinks button{
-    border-radius: 17px;
+    border-radius: 120px;
     border:none;
     background: #23262D;
     color: #FFFFFF;
