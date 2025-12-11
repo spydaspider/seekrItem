@@ -1,0 +1,81 @@
+.usersPageContainer{
+     position: absolute;
+    top:13%;
+    left: 1px;
+    right: 1px;
+    bottom:1px;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding: 1em;
+}
+.usersSearch{
+     width: 100%;
+    height: 40px;
+    font-size: 12px;
+    
+    border:none;
+    border-radius: 17px;
+    outline: none;
+     background-image: url('/src/images/searchIcon.png'); 
+  background-repeat: no-repeat;
+  background-position: 20px center;
+  padding-left: 45px; 
+  background-size: 16px 16px;
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #d9d9d9;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+}
+
+.headerRow {
+  background: #c9c7c5;
+  color: #000;
+  font-weight: 600;
+  
+}
+
+.headerRow th {
+  padding: 14px;
+  text-align: center;
+}
+
+.row {
+  background: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.row td {
+  padding: 16px 14px;
+  color: #333;
+}
+
+.actionBtn {
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.activate {
+  background-color: #1e1e1e;
+}
+
+.suspend {
+  background-color: #444;
+}
+tbody{
+    overflow-y: auto;
+}

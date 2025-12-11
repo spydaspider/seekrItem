@@ -1,10 +1,13 @@
 import styles from './AdminDashboard.module.css';
 import { useState } from 'react';
 
-import first from '../images/Vector.png';
-import second from '../images/second.png';
-import third from '../images/Group.png';
-import fourth from '../images/team.png';
+
+
+import {ReactComponent as homeIcon} from '../images/home.svg';
+import {ReactComponent as lostAndFoundIcon} from '../images/lostandfound.svg';
+import {ReactComponent as claimsIcon} from '../images/claims.svg';
+import {ReactComponent as usersIcon} from '../images/usersPage.svg';
+
 
 import bell from '../images/bell.png';
 import settings from '../images/settings.png';
@@ -15,16 +18,17 @@ import seekIcon from '../images/seekIcon.png';
 import Navbar from './Navbar';
 import LostAndFoundBoard from './LostAndFoundBoard';
 import Claims from './Claims';
+import UsersPage from './UsersPage';
 
 
 const AdminDashboard = () => {
 
   // Group 1 (first four badges)
   const group1 = [
-    { name: 'Dashboard', icon: first },
-    { name: 'second', icon: second },
-    { name: 'third', icon: third },
-    { name: 'fourth', icon: fourth },
+    { name: 'Dashboard', Icon: homeIcon },
+    { name: 'second', Icon: lostAndFoundIcon },
+    { name: 'third', Icon:  claimsIcon },
+    { name: 'fourth', Icon: usersIcon },
   ];
 
   // Group 2 (next two)
@@ -42,6 +46,7 @@ const AdminDashboard = () => {
   const [showDashboard, setShowDashboard] = useState(true);
   const [showLostAndFoundBoard, setShowLostAndFoundBoard] = useState(false);
   const [showClaims, setShowClaims] = useState(false);
+  const [showUsersPage,setShowUsersPage] = useState(false);
 
   const handleBadgeClick = (badge) => {
     setSelectedBadge(badge);
@@ -50,6 +55,7 @@ const AdminDashboard = () => {
       setShowDashboard(true);
       setShowLostAndFoundBoard(false);
       setShowClaims(false);
+      setShowUsersPage(false);
       
 
     }
@@ -58,12 +64,25 @@ const AdminDashboard = () => {
       setShowLostAndFoundBoard(true);
       setShowDashboard(false);
       setShowClaims(false);
+      setShowUsersPage(false);
+
     }
     else if(badge === "third")
     {
       setShowLostAndFoundBoard(false);
       setShowDashboard(false);
       setShowClaims(true);
+      setShowUsersPage(false);
+
+      
+
+    }
+    else if(badge === "fourth")
+    {
+      setShowLostAndFoundBoard(false);
+      setShowDashboard(false);
+      setShowClaims(false);
+      setShowUsersPage(true);
 
     }
   };
@@ -85,13 +104,13 @@ const AdminDashboard = () => {
             <div className={styles.insideGroup1}>
 
             
-            {group1.map(({ name, icon }) => (
+            {group1.map(({ name, Icon }) => (
               <button
                 key={name}
                 className={`${styles.badge} ${selectedBadge === name ? styles.selected : ''}`}
                 onClick={() => handleBadgeClick(name)}
               >
-                <img src={icon} alt="" className={styles.badgeIcon} />
+                <Icon src={Icon} alt="" className={styles.badgeIcon} />
               </button>
             ))}
             </div>
@@ -131,6 +150,7 @@ const AdminDashboard = () => {
                 {showDashboard && <Dashboard />}
                 {showLostAndFoundBoard && <LostAndFoundBoard/>}
                 {showClaims && <Claims/>}
+                {showUsersPage && <UsersPage/>}
 
 
         </div>

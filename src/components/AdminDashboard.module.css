@@ -68,29 +68,38 @@
 
 /* ------------------- BADGES ------------------- */
 .badge {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;      /* makes it circular */
-  background: #fff;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background-color: transparent;
   cursor: pointer;
   border: none;
-  transition: 0.3s;
+  transition: background 0.25s ease, transform 0.2s ease;
 }
 
-.badge img {
-  width: 40%;              /* icon size inside circle */
-  height: auto;
+.badgeIcon {
+  width: 28px;
+  height: 28px;
+  color: #8d8d8d; /* default SVG color */
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 
-.badge:hover {
-  background: #EFEFF4;
+.badge:hover .badgeIcon {
+  transform: scale(1.1);
+  color: #F0E561; /* optional hover color */
 }
 
 .selected {
-  background: linear-gradient(to right, #1E3C72, #2A5298);
+  background-color: #FFFFFF;
+  border:1px solid #1e1e1e;
+  
+}
+
+.selected .badgeIcon {
+  color: #F0E561; /* selected icon color */
 }
 
 /* ------------------- MAIN CONTENT ------------------- */
