@@ -49,6 +49,11 @@
 
 
  }
+ .innerForm{
+
+   flex: 1;
+ }
+ 
  .innerRight{
     background: linear-gradient(to right, #010101, #232323);
     flex:1;

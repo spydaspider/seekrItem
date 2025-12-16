@@ -101,7 +101,8 @@
     border:none;
     background: #23262D;
     color: #FFFFFF;
-    width: 20%
+    width: 20%;
+    cursor: pointer;
 
   }
   .seekIcon{

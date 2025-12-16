@@ -1,28 +1,34 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import './App.css';
 import AdminDashboard from './components/AdminDashboard';
-import Login from './components/Login.js';
+import Login from './components/Login';
+import { useAuthContext } from './hooks/UseAuthContext';
 
 function App() {
+  const { user } = useAuthContext();
+
   return (
     <div className="App">
-     <BrowserRouter>
-    
-       <Routes>
-        <Route exact path="/" element = {<Login/>}/>
-      <Route path="/AdminDashboard" element = {<AdminDashboard/>}/>
- 
-{/*                <Route exact path="/" element = {<Spinner/>}/>
- */}
-       {/*   <Route exact path="/" element={<Login/>}/>
-         <Route exact path="/register" element = {<Register/>}/>
-          <Route path="/instructorDashboard" element = {<InstructorDashboard/>}/>
-         <Route path ="/studentDashboard" element = {<StudentDashboard/>}/> */}
-                  
+      <BrowserRouter>
+        <Routes>
 
-      </Routes>
+          {/* Login */}
+          <Route
+            path="/login"
+            element={!user ? <Login /> : <Navigate to="/" />}
+          />
 
+          {/* Protected Admin Dashboard */}
+          <Route
+            path="/"
+            element={user ? <AdminDashboard /> : <Navigate to="/login" />}
+          />
+
+          {/* Catch all */}
+          <Route path="*" element={<Navigate to="/login" />} />
+
+        </Routes>
       </BrowserRouter>
     </div>
   );

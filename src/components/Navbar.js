@@ -3,14 +3,18 @@ import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import { useNavigate } from 'react-router-dom';
 import seekIcon from '../images/seekIcon.png';
+import { useLogout } from '../hooks/UseLogout.js';
 /* import homeIcon from '../assets/icons/home.png';
  */const Navbar = () =>{
 /*       const { user } = useAuthContext();
  */
     
     const navigate = useNavigate();
-/*     const {logout} = useLogout();
- */    
+ 
+  const { logout } = useLogout();
+    const handleLogout = () =>{
+        logout();
+    }
      
     return(
         <header>
@@ -32,7 +36,7 @@ import seekIcon from '../images/seekIcon.png';
  */}             
                 <div className={styles.rightLinks}>
                    <input type="search" placeholder = "Search for all lost or found items"/> 
-                   <button>log out</button>
+                    <button onClick={handleLogout}>log out</button>
                 </div>
                   
 
