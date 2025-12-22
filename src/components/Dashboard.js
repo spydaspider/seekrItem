@@ -12,6 +12,7 @@ const Dashboard = () =>{
     const {claims, dispatch: claimsDispatch} = useClaimsContext();
     const [error, setError] = useState();
     const [approvedClaims, setApprovedClaims] = useState();
+    const [pendingClaims, setPendingClaims] = useState([]);
     //use effect for items
     useEffect(()=>{
         const fetchItems = async()=>{
@@ -26,6 +27,7 @@ const Dashboard = () =>{
             {
             
                 dispatch({type: 'SET_ITEMS', payload: json});
+                
             }
             if(!response.ok)
             {
@@ -56,7 +58,8 @@ const Dashboard = () =>{
                 claimsDispatch({type: 'SET_CLAIMS', payload: json});
                 //check for approved
                 let approved = 0;
-                console.log(json);
+                let pending = [];
+                
                 for(let i = 0; i < json.length; i++)
                 {
                     if(json[i].status === "approved")
@@ -64,8 +67,14 @@ const Dashboard = () =>{
                          approved = approved + 1;
                         
                     }
+                    else if(json[i].status === "pending")
+                    {
+                             pending.push(json[i]);
+                    }
                 }
                 setApprovedClaims(approved);
+                setPendingClaims(pending);
+                
                 
                 
             }
@@ -126,6 +135,17 @@ const Dashboard = () =>{
     </div>
                     <div className={styles.pendingClaims}>
                       <h4>Pending Claims</h4>
+                    {pendingClaims && pendingClaims.map(
+                        (pendingClaim)=>(
+                             <div className={styles.pendingCard}>
+                            <div className={styles.personCard}>
+                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
+                                <div className={styles.personParagraph}><p>{pendingClaim.itemTitle}<br></br><span className={styles.black}>{pendingClaim.itemTitle}</span></p></div>
+                            </div>
+                            <button>pending</button>
+                        </div>
+                        )
+                    )}
                       <div className={styles.pendingCard}>
                             <div className={styles.personCard}>
                                 <div className={styles.personContainer}><img src={person} alt="person"/></div>
@@ -217,71 +237,18 @@ const Dashboard = () =>{
                    </div>
                    <div className={styles.recentItems}>
                         <h4>Recent Items</h4>
-                        <div className={styles.recentCard}>
+                        {items && items.map((item)=>(
+                               <div className={styles.recentCard}>
                             <div className={styles.personCard}>
                                 <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
+                                <div className={styles.personParagraph}><p>{item.title}<br></br><span className={styles.black}>{item.description}</span></p></div>
                             </div>
-                            <div className={styles.itemStatus}>item Status: found</div>
+                            <div className={styles.itemStatus}>item Status: {item.status}</div>
                             <div className={styles.arrowContainer}><img className={styles.arrowRight} src={arrowRight} alt= "arrow right"/></div>
                         </div>
-                         <div className={styles.recentCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <div className={styles.itemStatus}>item Status: found</div>
-                            <div className={styles.arrowContainer}><img className={styles.arrowRight} src={arrowRight} alt= "arrow right"/></div>
+                        ))}
+                       
                         </div>
-                         <div className={styles.recentCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <div className={styles.itemStatus}>item Status: found</div>
-                            <div className={styles.arrowContainer}><img className={styles.arrowRight} src={arrowRight} alt= "arrow right"/></div>
-                        </div>
-                         <div className={styles.recentCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <div className={styles.itemStatus}>item Status: found</div>
-                            <div className={styles.arrowContainer}><img className={styles.arrowRight} src={arrowRight} alt= "arrow right"/></div>
-                        </div>
-                         <div className={styles.recentCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <div className={styles.itemStatus}>item Status: found</div>
-                            <div className={styles.arrowContainer}><img className={styles.arrowRight} src={arrowRight} alt= "arrow right"/></div>
-                        </div>
-                         <div className={styles.recentCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <div className={styles.itemStatus}>item Status: found</div>
-                            <div className={styles.arrowContainer}><img className={styles.arrowRight} src={arrowRight} alt= "arrow right"/></div>
-                        </div>
-                         <div className={styles.recentCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <div className={styles.itemStatus}>item Status: found</div>
-                            <div className={styles.arrowContainer}><img className={styles.arrowRight} src={arrowRight} alt= "arrow right"/></div>
-                        </div>
-                         <div className={styles.recentCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <div className={styles.itemStatus}>item Status: found</div>
-                            <div className={styles.arrowContainer}><img className={styles.arrowRight} src={arrowRight} alt= "arrow right"/></div>
-                        </div>
-                   </div>
                    
                 </div>
             </div>
