@@ -2,7 +2,84 @@ import styles from './Dashboard.module.css';
 import hugeIcon from '../images/hugeIcon.png';
 import person from '../images/person.svg';
 import arrowRight from '../images/arrow-right.svg';
+import { useAuthContext } from '../hooks/UseAuthContext.js';
+import { useItemsContext } from '../hooks/UseItemContext.js';
+import { useClaimsContext } from '../hooks/UseClaimsContext.js';
+import { useState, useEffect} from 'react';
 const Dashboard = () =>{
+    const { user } = useAuthContext();
+    const {items, dispatch} = useItemsContext();
+    const {claims, dispatch: claimsDispatch} = useClaimsContext();
+    const [error, setError] = useState();
+    const [approvedClaims, setApprovedClaims] = useState();
+    //use effect for items
+    useEffect(()=>{
+        const fetchItems = async()=>{
+            const response = await fetch('/api/items/',{
+                method: 'GET',
+                headers:{
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+            const json = await response.json();
+            if(response.ok)
+            {
+            
+                dispatch({type: 'SET_ITEMS', payload: json});
+            }
+            if(!response.ok)
+            {
+                setError(json.error);
+            }
+        }
+        if(user)
+        {
+            fetchItems();
+        }
+
+    },[dispatch, user])
+
+    //Use Effect for claims
+
+    useEffect(()=>{
+        const fetchClaims = async()=>{
+            const response = await fetch('/api/admin/claims',{
+                method: 'GET',
+                headers:{
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+            const json = await response.json();
+            if(response.ok)
+            {
+                
+                claimsDispatch({type: 'SET_CLAIMS', payload: json});
+                //check for approved
+                let approved = 0;
+                console.log(json);
+                for(let i = 0; i < json.length; i++)
+                {
+                    if(json[i].status === "approved")
+                    {
+                         approved = approved + 1;
+                        
+                    }
+                }
+                setApprovedClaims(approved);
+                
+                
+            }
+            if(!response.ok)
+            {
+                setError(json.error);
+            }
+        }
+        if(user)
+        {
+            fetchClaims();
+        }
+
+    },[claimsDispatch, user])
         return(
             <div className={styles.dashboardContainer}>
                 <div className={styles.topBoard}>
@@ -32,17 +109,17 @@ const Dashboard = () =>{
 
       <div className={styles.rightFlex}>
         <div className={`${styles.bubble} ${styles.bubbleClaims}`}>
-          <span className={styles.bigNumber}>12</span>
+         { claims && <span className={styles.bigNumber}>{claims.length}</span>}
           <span className={styles.label}>claims</span>
         </div>
 
         <div className={`${styles.bubble} ${styles.bubbleLost}`}>
-          <span className={styles.bigNumber}>8</span>
+         {items && <span className={styles.bigNumber}>{items.length}</span>}
           <span className={styles.label}>Items</span>
         </div>
 
         <div className={`${styles.bubble} ${styles.bubbleFound}`}>
-          <span className={styles.bigNumber}>7</span>
+         {approvedClaims && <span className={styles.bigNumber}>{approvedClaims}</span> }
           <span className={styles.label}>found</span>
         </div>
       </div>
@@ -116,7 +193,7 @@ const Dashboard = () =>{
                     </div>
                     </div>
                     <div className={styles.numberCard}>
-                        <div>8</div>
+                        {claims&&<div>{claims.length}</div>}
                     </div>
                     </div>
                    
@@ -134,7 +211,7 @@ const Dashboard = () =>{
                     </div>
                     </div>
                     <div className={styles.numberCard}>
-                        <div>11</div>
+                        {approvedClaims&&<div>{approvedClaims}</div>}
                     </div>
                     </div>
                    </div>

@@ -1,5 +1,5 @@
 import styles from './AdminDashboard.module.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 
 
@@ -47,6 +47,9 @@ const AdminDashboard = () => {
   const [showLostAndFoundBoard, setShowLostAndFoundBoard] = useState(false);
   const [showClaims, setShowClaims] = useState(false);
   const [showUsersPage,setShowUsersPage] = useState(false);
+
+  
+  
 
   const handleBadgeClick = (badge) => {
     setSelectedBadge(badge);
