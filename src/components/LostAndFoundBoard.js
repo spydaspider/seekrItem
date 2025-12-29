@@ -29,7 +29,7 @@ const LostAndFoundBoard = () =>{
             {
             
                 dispatch({type: 'SET_ITEMS', payload: json});
-                console.log(json);
+                
                 
             }
             if(!response.ok)

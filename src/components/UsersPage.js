@@ -1,15 +1,44 @@
 import styles from './UsersPage.module.css';
-
+import { useAuthContext } from '../hooks/UseAuthContext.js';
+import { useUsersContext } from '../hooks/UseUsersContext.js';
+import { useState, useEffect } from 'react';
 
 const UsersPage=()=> {
-  const users = [
-    { id: 1, name: "Name", email: "Email", role: "Role", status: "Status", action: "Activate" },
-    { id: 2, name: "Name", email: "Email", role: "Role", status: "Status", action: "Suspend" },
-    { id: 3, name: "Name", email: "Email", role: "Role", status: "Status", action: "Activate" },
-    { id: 4, name: "Name", email: "Email", role: "Role", status: "Status", action: "Activate" },
-    
-  ];
+  const { user } = useAuthContext();
+  const { users, dispatch} = useUsersContext();
+  const [error,setError] = useState();
+  
+  
+    useEffect(()=>{
+        const fetchUsers = async()=>{
+            const response = await fetch('/api/users/users',{
+                method: 'GET',
+                headers:{
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+            const json = await response.json();
+            if(response.ok)
+            {
+                
+                dispatch({type: 'SET_USERS', payload: json});
+                console.log(json);
+          
+               
+                
+                
+            }
+            if(!response.ok)
+            {
+                setError(json.error);
+            }
+        }
+        if(user)
+        {
+            fetchUsers();
+        }
 
+    },[dispatch, user])
   return (
     <div className={styles.usersPageContainer}>
         <input className={styles.usersSearch} type="search" placeholder="Search Users"/>
@@ -27,18 +56,15 @@ const UsersPage=()=> {
         <tbody>
           {users.map((user) => (
             <tr key={user.id} className={styles.row}>
-              <td>{user.name}</td>
+              <td>{user.username}</td>
               <td>{user.email}</td>
               <td>{user.role}</td>
-              <td>{user.status}</td>
+              {user.isActive === true&&<td>Active</td>}
+              {user.isActive === false && <td>suspended</td>}
               <td>
-                <button
-                  className={`${styles.actionBtn} ${
-                    user.action === "Suspend" ? styles.suspend : styles.activate
-                  }`}
-                >
-                  {user.action}
-                </button>
+                {user.isActive === true && <button className={styles.suspend}>suspend</button>}
+                {user.isActive === false && <button className={styles.activate}>activate</button>}
+               
               </td>
             </tr>
           ))}

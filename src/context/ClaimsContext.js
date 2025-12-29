@@ -34,7 +34,7 @@ const claimsReducer = (state,action) =>{
 }
 export const ClaimsContextProvider = ({children}) =>{
     const [ state,dispatch ] = useReducer(claimsReducer,{
-        claims: null
+        claims: []
     });
       return(
         <ClaimsContext.Provider value = {{...state,dispatch}}>

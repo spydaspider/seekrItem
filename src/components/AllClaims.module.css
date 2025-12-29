@@ -1,10 +1,4 @@
-.catButtons{
-  
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1em;
-}
+
 .badge {
   padding: 8px 20px;
   border-radius: 22px;
@@ -46,36 +40,8 @@
 .selected .badgeIcon {
   color: #F0E561; /* selected icon color */
 }
-.claimsCover{
-  
- width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-    box-sizing: border-box;
-
-  padding: 2em;
-  overflow-y: auto;
-      flex:1;
 
 
-}
-.claimsContainer{
-       
-      position: relative;
-    /* remove top: 90px; */
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    overflow-y: hidden;
-    gap:1em;
-    height: 100vh; /* full viewport height */
-    padding-top: 90px; /* replace top offset with padding */
-
-    
-    
-    
-}
 .claimsSearch{
     width: 30%;
     border-radius: 120px;

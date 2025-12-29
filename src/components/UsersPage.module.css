@@ -71,10 +71,20 @@
 
 .activate {
   background-color: #1e1e1e;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
 }
 
 .suspend {
   background-color: #444;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  padding: 0.5em;
+  border-radius:8px;
 }
 tbody{
     overflow-y: auto;
