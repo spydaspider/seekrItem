@@ -6,6 +6,7 @@ import { useAuthContext } from '../hooks/UseAuthContext.js';
 import { useItemsContext } from '../hooks/UseItemContext.js';
 import { useClaimsContext } from '../hooks/UseClaimsContext.js';
 import { useState, useEffect} from 'react';
+import Spinner from './Spinner.js';
 const Dashboard = () =>{
     const { user } = useAuthContext();
     const {items, dispatch} = useItemsContext();
@@ -13,9 +14,14 @@ const Dashboard = () =>{
     const [error, setError] = useState();
     const [approvedClaims, setApprovedClaims] = useState();
     const [pendingClaims, setPendingClaims] = useState([]);
+      const [itemsLoading, setItemsLoading] = useState(true);
+      const [claimsLoading, setClaimsLoading] = useState(true);
+
     //use effect for items
     useEffect(()=>{
         const fetchItems = async()=>{
+            setItemsLoading(true);
+            try{
             const response = await fetch('/api/items/',{
                 method: 'GET',
                 headers:{
@@ -34,6 +40,13 @@ const Dashboard = () =>{
                 setError(json.error);
             }
         }
+        catch(err){
+            setError(err.message);
+        }
+        finally{
+            setItemsLoading(false);
+        }
+        }
         if(user)
         {
             fetchItems();
@@ -45,6 +58,8 @@ const Dashboard = () =>{
 
     useEffect(()=>{
         const fetchClaims = async()=>{
+            setClaimsLoading(true);
+            try{
             const response = await fetch('/api/admin/claims',{
                 method: 'GET',
                 headers:{
@@ -83,12 +98,22 @@ const Dashboard = () =>{
                 setError(json.error);
             }
         }
+        catch(err){
+            setError(err.message);
+        }
+        finally{
+            setClaimsLoading(false);
+        }
+        }
         if(user)
         {
             fetchClaims();
         }
 
     },[claimsDispatch, user])
+    if(itemsLoading || claimsLoading){
+        return <Spinner/>;
+    }
         return(
             <div className={styles.dashboardContainer}>
                 <div className={styles.topBoard}>
@@ -146,55 +171,9 @@ const Dashboard = () =>{
                         </div>
                         )
                     )}
-                      <div className={styles.pendingCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <button>pending</button>
-                        </div>
-                         <div className={styles.pendingCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <button>pending</button>
-                        </div>
-                         <div className={styles.pendingCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <button>pending</button>
-                        </div>
-                         <div className={styles.pendingCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <button>pending</button>
-                        </div>
-                         <div className={styles.pendingCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <button>pending</button>
-                        </div>
-                         <div className={styles.pendingCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <button>pending</button>
-                        </div>
-                         <div className={styles.pendingCard}>
-                            <div className={styles.personCard}>
-                                <div className={styles.personContainer}><img src={person} alt="person"/></div>
-                                <div className={styles.personParagraph}><p>Wallet<br></br><span className={styles.black}>Black Leather Wallet</span></p></div>
-                            </div>
-                            <button>pending</button>
-                        </div>
+                    
+                        
+                        
                     </div>
                 </div>
                 <div className={styles.buttonCards}>

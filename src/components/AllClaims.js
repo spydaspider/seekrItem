@@ -3,15 +3,19 @@ import wallet from '../images/item.svg';
 import { useAuthContext } from  '../hooks/UseAuthContext.js';
 import { useClaimsContext } from '../hooks/UseClaimsContext.js';
 import { useState, useEffect} from 'react';
+import Spinner from './Spinner.js';
 const AllClaims = () =>{
  const { user } = useAuthContext();
     const {claims, dispatch: claimsDispatch} = useClaimsContext();
     const [error,setError] = useState();
     const [approvedClaims, setApprovedClaims] = useState([]);
     const [pendingClaims, setPendingClaims] = useState([]);
+    const [allClaimsLoader, setAllClaimsLoader] = useState(true);
 
      useEffect(()=>{
         const fetchClaims = async()=>{
+            setAllClaimsLoader(true);
+            try{
             const response = await fetch('/api/admin/claims',{
                 method: 'GET',
                 headers:{
@@ -51,12 +55,21 @@ const AllClaims = () =>{
                 setError(json.error);
             }
         }
+        catch(err)
+        {
+            setError(err.message);
+        }
+        finally{
+            setAllClaimsLoader(false);
+        }
+        }
         if(user)
         {
             fetchClaims();
         }
 
     },[claimsDispatch, user])
+    if(allClaimsLoader) return <Spinner/>
     return(
          <div className={styles.claimsCardContainer}>
            {claims.map((claim)=>(
@@ -81,82 +94,29 @@ const AllClaims = () =>{
                        </div>
                        {claim.status === 'pending' && (<>
                        <div className={styles.downButtons}>
-                        <button>View details</button>
-                        <button>Approve</button>
-                        <button>Reject</button>
+                        <button className={styles.approveBtn}   disabled={!claim.answerMatches}>Approve</button>
+                    
                        </div>
                          </>)
                          }
                     </div>
-                  { claim.status === 'pending' && (<>
-                   <button>Pending</button>
-                   </> )}
-                   { claim.status === 'approved' && (<>
-                      <button>Approved</button>
-                   </>)} 
+                   <div className={styles.statusBadge}>
+  {claim.status === 'approved' ? (
+    <button className={styles.approved}>Approved</button>
+  ) : claim.answerMatches ? (
+    <button className={styles.verified}>Verified</button>
+  ) : (
+    <button className={styles.pending}>Pending</button>
+  )}
+</div>
                 </div>
             </div>
             
            ))}
-             <div className={styles.claimsCard}>
-                <img src={wallet} alt="wallet"/>
-                <div className={styles.claimsCardContent}>
-                    <div className={styles.leftContent}>
-                        <div className={styles.claimer}>
-                    <h5 className={styles.itemName}>Black leather Wallet</h5>
-                    <p>Claimed by Mike Davis</p>
-                       </div>
-                        <div className={styles.claimDescContainer}>
-                    <h5 className={styles.claimDesc}>Claim Description</h5>
-                    <p>This is my backpack. I lost it yesterday at the library.</p>
-                       </div>
-                       <div className={styles.proofContainer}>
-                    <h5 className={styles.ownershipProof}>Proof of Ownership</h5>
-                    <p>The laptop inside has my name engraved on it. Serial number: ABC123458</p>
-                       </div>
-                       <div className={styles.date}>
-                        <p>Submitted on 11/28/2024, 10:00:00AM</p>
-                       </div>
-                       <div className={styles.downButtons}>
-                        <button>View details</button>
-                        <button>Approve</button>
-                        <button>Reject</button>
-                       </div>
-
-                    </div>
-                    <button>pending</button>
-                </div>
-            </div>
+             
            
-             <div className={styles.claimsCard}>
-                <img src={wallet} alt="wallet"/>
-                <div className={styles.claimsCardContent}>
-                    <div className={styles.leftContent}>
-                        <div className={styles.claimer}>
-                    <h5 className={styles.itemName}>Black leather Wallet</h5>
-                    <p>Claimed by Mike Davis</p>
-                       </div>
-                        <div className={styles.claimDescContainer}>
-                    <h5 className={styles.claimDesc}>Claim Description</h5>
-                    <p>This is my backpack. I lost it yesterday at the library.</p>
-                       </div>
-                       <div className={styles.proofContainer}>
-                    <h5 className={styles.ownershipProof}>Proof of Ownership</h5>
-                    <p>The laptop inside has my name engraved on it. Serial number: ABC123458</p>
-                       </div>
-                       <div className={styles.date}>
-                        <p>Submitted on 11/28/2024, 10:00:00AM</p>
-                       </div>
-                       <div className={styles.downButtons}>
-                        <button>View details</button>
-                        <button>Approve</button>
-                        <button>Reject</button>
-                       </div>
-
-                    </div>
-                    <button>pending</button>
-                </div>
-            </div>
+             
+        
             
         </div>
     )

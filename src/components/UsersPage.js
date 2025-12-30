@@ -2,15 +2,19 @@ import styles from './UsersPage.module.css';
 import { useAuthContext } from '../hooks/UseAuthContext.js';
 import { useUsersContext } from '../hooks/UseUsersContext.js';
 import { useState, useEffect } from 'react';
+import Spinner from './Spinner.js';
 
 const UsersPage=()=> {
   const { user } = useAuthContext();
   const { users, dispatch} = useUsersContext();
   const [error,setError] = useState();
+  const [loading, setLoading] = useState(true);
   
   
     useEffect(()=>{
         const fetchUsers = async()=>{
+            setLoading(true);
+            try{
             const response = await fetch('/api/users/users',{
                 method: 'GET',
                 headers:{
@@ -32,6 +36,13 @@ const UsersPage=()=> {
             {
                 setError(json.error);
             }
+          }
+            catch(error){
+              setError(error.message);
+            }
+            finally{
+              setLoading(false);
+            }
         }
         if(user)
         {
@@ -39,6 +50,7 @@ const UsersPage=()=> {
         }
 
     },[dispatch, user])
+    if(loading) return <Spinner/>;
   return (
     <div className={styles.usersPageContainer}>
         <input className={styles.usersSearch} type="search" placeholder="Search Users"/>

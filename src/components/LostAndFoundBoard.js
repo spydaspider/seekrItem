@@ -7,17 +7,21 @@ import itemImage from '../images/item.svg';
 import { useAuthContext } from '../hooks/UseAuthContext';
 import { useItemsContext } from '../hooks/UseItemContext.js';
 import { useState, useEffect } from 'react';
+import Spinner from './Spinner.js';
 
 const LostAndFoundBoard = () =>{
     const { user } = useAuthContext();
     const { items, dispatch } = useItemsContext();
     const [error, setError ] = useState();
     const [searchTerm, setSearchTerm] = useState("");
+    const [itemsLoading, setItemsLoading] = useState(true);
     
     const filteredItems = items.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
      console.log(filteredItems);
      useEffect(()=>{
         const fetchItems = async()=>{
+            setItemsLoading(true);
+            try{
             const response = await fetch('/api/items/',{
                 method: 'GET',
                 headers:{
@@ -37,12 +41,20 @@ const LostAndFoundBoard = () =>{
                 setError(json.error);
             }
         }
+        catch(err){
+            setError(err.message);
+        }
+        finally{
+            setItemsLoading(false);
+        }
+        }
         if(user)
         {
             fetchItems();
         }
 
     },[dispatch, user])
+    if(itemsLoading)  return <Spinner/>;
    return(
     <div className={styles.lostAndFoundBoardContainer}>
         <input className={styles.search} type="search" placeholder="Search for all lost or found items" value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)}/>
