@@ -70,7 +70,7 @@ const ResolvedClaims = () =>{
          <div className={styles.claimsCardContainer}>
            { claims.map((claim)=>(
             <div className={styles.claimsCard}>
-                <img src={wallet} alt="wallet"/>
+                            <img src={`http://localhost:4000/${claim.imageUrl}`} alt="item"/>
                 <div className={styles.claimsCardContent}>
                     <div className={styles.leftContent}>
                         <div className={styles.claimer}>
