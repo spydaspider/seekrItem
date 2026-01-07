@@ -26,6 +26,16 @@ const usersReducer = (state,action) =>{
             return{
                 users: state.users.filter((user)=>user._id !== action.payload._id)
             }
+
+        case 'TOGGLE_USER_STATUS':
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user._id === action.payload.userId
+            ? { ...user, isActive: action.payload.isActive }
+            : user
+        )
+      };
         default:
             return state;
         

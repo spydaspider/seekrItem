@@ -9,7 +9,50 @@ const UsersPage=()=> {
   const { users, dispatch} = useUsersContext();
   const [error,setError] = useState();
   const [loading, setLoading] = useState(true);
+  const [togglingId, setTogglingId] = useState(null);
+  const toggleUserStatus = async (userId, isActive) => {
+
+  dispatch({
+    type: 'TOGGLE_USER_STATUS',
+    payload: { userId, isActive: !isActive }
+  });
+
+  setTogglingId(userId);
+
+  try {
+    const endpoint = isActive
+      ? `/api/admin/users/${userId}/deactivate`
+      : `/api/admin/users/${userId}/reactivate`;
+
+    const res = await fetch(endpoint, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    });
+
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error);
+
   
+    dispatch({
+      type: 'TOGGLE_USER_STATUS',
+      payload: { userId, isActive: json.isActive }
+    });
+
+  } catch (err) {
+  
+    dispatch({
+      type: 'TOGGLE_USER_STATUS',
+      payload: { userId, isActive }
+    });
+
+    setError(err.message);
+  } finally {
+    setTogglingId(null);
+  }
+};
+
   
     useEffect(()=>{
         const fetchUsers = async()=>{
@@ -66,21 +109,37 @@ const UsersPage=()=> {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user.id} className={styles.row}>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{user.role}</td>
-              {user.isActive === true&&<td>Active</td>}
-              {user.isActive === false && <td>suspended</td>}
-              <td>
-                {user.isActive === true && <button className={styles.suspend}>suspend</button>}
-                {user.isActive === false && <button className={styles.activate}>activate</button>}
-               
-              </td>
-            </tr>
-          ))}
-        </tbody>
+  {users?.map((u) => (
+    <tr key={u._id} className={styles.row}>
+      <td>{u.username}</td>
+      <td>{u.email}</td>
+      <td>{u.role}</td>
+      <td>{u.isActive ? 'Active' : 'Suspended'}</td>
+
+      {/* ACTION */}
+      <td>
+        {u.isActive ? (
+          <button
+            className={styles.suspend}
+            disabled={togglingId === u._id}
+            onClick={() => toggleUserStatus(u._id, true)}
+          >
+            {togglingId === u._id ? 'Activating…' : 'Suspend'}
+          </button>
+        ) : (
+          <button
+            className={styles.suspend}
+            disabled={togglingId === u._id}
+            onClick={() => toggleUserStatus(u._id, false)}
+          >
+            {togglingId === u._id ? 'Suspending…' : 'Activate'}
+          </button>
+        )}
+      </td>
+    </tr>
+  ))}
+</tbody>
+
       </table>
     </div>
     </div>
