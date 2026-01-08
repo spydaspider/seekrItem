@@ -51,11 +51,13 @@
 
 /* --- Card --- */
 .card {
+
   background: #ffffff;
   border-radius: 22px;
   padding: 13px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   gap: 12px;
   box-shadow: 
     0px 4px 10px rgba(0,0,0,0.08),
@@ -142,11 +144,14 @@
 .cardImage {
   width: 100%;
   margin-top: 10px;
+  height: 180px;
+  overflow: hidden;
+  
 }
 
 .cardImage img {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 18px;
   object-fit: cover;
 }

@@ -1,80 +1,67 @@
 import styles from './Claims.module.css';
-import wallet from '../images/item.svg';
-import { useAuthContext } from  '../hooks/UseAuthContext.js';
-import { useClaimsContext } from '../hooks/UseClaimsContext.js';
-import { useState, useEffect} from 'react';
-import ActiveClaims from './ActiveClaims.js';
-import AllClaims from './AllClaims.js';
-import ResolvedClaims from './ResolvedClaims.js';
-const Claims =()=>{
-    const { user } = useAuthContext();
-    const {claims, dispatch: claimsDispatch} = useClaimsContext();
-    const [error,setError] = useState();
-    const  categoryButton = [
-        {name: 'All'},
-        {name: 'Active'},
-        {name: 'Resolved'}
-        
-    ]
-            const [selectedBadge, setSelectedBadge] = useState("All");
-            const [showAll, setShowAll] = useState(true);
-            const [showActive, setShowActive] = useState(false);
-            const [showResolved, setShowResolved] = useState(false);
+import { useAuthContext } from '../hooks/UseAuthContext';
+import { useClaimsContext } from '../hooks/UseClaimsContext';
+import { useEffect, useState } from 'react';
+import ClaimsList from './ClaimsList';
 
-            const handleBadgeClick = (badge)=>{
-                setSelectedBadge(badge);
-                if(badge === "All")
-                {
-                    setShowAll(true);
-                    setShowResolved(false);
-                    setShowActive(false);
+const Claims = () => {
+  const { user } = useAuthContext();
+  const { claims, dispatch } = useClaimsContext();
+  const [selectedBadge, setSelectedBadge] = useState('All');
 
+  useEffect(() => {
+    const fetchClaims = async () => {
+      const res = await fetch('/api/admin/claims', {
+        headers: { Authorization: `Bearer ${user.token}` }
+      });
+      const json = await res.json();
 
+      if (res.ok) {
+        dispatch({ type: 'SET_CLAIMS', payload: json });
+        console.log(json);
+      }
+    };
 
-                }
-                else if(badge === "Active")
-                {
-                    setShowActive(true);
-                    setShowAll(false);
-                    setShowResolved(false);
+    if (user) {
+      fetchClaims();
+    }
+  }, [user, dispatch]);
 
+  
+  const filteredClaims = () => {
+    if (selectedBadge === 'Active') {
+      return claims.filter(c => c.status === 'pending');
+    }
+    if (selectedBadge === 'Resolved') {
+      return claims.filter(c => c.status === 'approved');
+    }
+    return claims;
+  };
 
+  return (
+    <div className={styles.claimsContainer}>
+      <input
+        className={styles.claimsSearch}
+        type="search"
+        placeholder="Search by clicking one of the statuses below"
+      />
 
-                }
-                else if(badge === "Resolved")
-                {
-                    setShowResolved(true);
-                    setShowActive(false);
-                    setShowAll(false);
-                }
-            }
+      <div className={styles.catButtons}>
+        {['All', 'Active', 'Resolved'].map(name => (
+          <button
+            key={name}
+            className={`${styles.badge} ${selectedBadge === name ? styles.selected : ''}`}
+            onClick={() => setSelectedBadge(name)}
+          >
+            {name}
+          </button>
+        ))}
+      </div>
 
-    
+      
+      <ClaimsList claims={filteredClaims()} />
+    </div>
+  );
+};
 
-    return(
-        <div className={styles.claimsContainer}>
-             <input className={styles.claimsSearch} type="search" placeholder="Search by clicking one of the statuses below"/>
-             <div className={styles.catButtons}>
-                 {categoryButton.map(
-                ({name})=>(
-                   <button key={name} className={`${styles.badge} ${selectedBadge === name ? styles.selected : ''}`}
-                   onClick={()=>handleBadgeClick(name)}
-                   >{name}</button>
-
-                )
-             )}
-             </div>
-              <div className={styles.claimsCover}>
-                                {showAll && <AllClaims/>}
-                                {showActive && <ActiveClaims/>}
-                                {showResolved && <ResolvedClaims/>}
-                       </div>
-             
-       
-             
-            
-       
-        </div>
-    )
-}
 export default Claims;
