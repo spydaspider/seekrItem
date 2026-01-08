@@ -86,7 +86,7 @@ const ActiveClaims = () => {
     <div className={styles.claimsCardContainer}>
       {claims.map((claim) => (
         <div key={claim._id} className={styles.claimsCard}>
-                            <img src={`http://localhost:4000/${claim.imageUrl}`} alt="item"/>
+                            <img src={claim.imageUrl} alt="item"/>
 
           <div className={styles.claimsCardContent}>
             {/* LEFT CONTENT */}
